@@ -141,13 +141,13 @@ export default function App() {
 
   // ==================== GALLERY ARRAY ====================
   const gallery = [
-    { id: 1, category: 'pre-wedding', image: preWedding },
+    { id: 1, category: 'pre-wedding', image: wedding },
     { id: 2, category: 'couple', image: couple3 },
     { id: 3, category: 'couple', image: couple2 },
     { id: 4, category: 'family', image: family },
     { id: 5, category: 'couple', image: couple1 },
     { id: 6, category: 'family', image: family1 },
-    { id: 7, category: 'pre-wedding', image: preWedding1 },
+    { id: 7, category: 'pre-wedding', image: img },
     { id: 8, category: 'couple', image: couple4 }
   ];
 
