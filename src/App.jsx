@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import { Heart, Music, Volume2, VolumeX, MapPin, Calendar, Search, Send,Users,CalendarDays ,Utensils,MessageSquareHeart, X } from 'lucide-react';
+import { Heart, Music, Volume2, VolumeX, MapPin, Calendar, Search, Send,Users,CalendarDays ,Utensils,MessageSquareHeart, X, Menu } from 'lucide-react';
 
 // ==================== IMAGE IMPORTS ====================
 import couple from './assets/couple.jpeg';
@@ -20,6 +20,7 @@ import weddingMusic from '../public/music/Dheema.mp3';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('HOME');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -79,6 +80,7 @@ export default function App() {
 
   const handleNavClick = (section) => {
     setActiveSection(section);
+    setMobileMenuOpen(false); // Close menu on navigation
     const element = document.getElementById(section);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -224,6 +226,11 @@ export default function App() {
         </div>
       )}
 
+      {/* ==================== MOBILE MENU OVERLAY ==================== */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu-overlay" onClick={() => setMobileMenuOpen(false)}></div>
+      )}
+
       {/* Navigation */}
       <nav className="navbar">
         <div className="nav-container">
@@ -231,6 +238,8 @@ export default function App() {
             <Heart size={32} className="heart-icon" />
             <span className="logo-text">S&I</span>
           </div>
+          
+          {/* Desktop Navigation */}
           <ul className="nav-links">
             {['HOME', 'WELCOME', 'EVENTS', 'GALLERY', 'RSVP'].map(item => (
               <li key={item}>
@@ -244,6 +253,32 @@ export default function App() {
               </li>
             ))}
           </ul>
+
+          {/* Mobile Menu Toggle Button */}
+          <button 
+            className={`mobile-menu-btn ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <Menu size={28} />
+          </button>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <ul className="mobile-nav-menu">
+              {['HOME', 'WELCOME', 'EVENTS', 'GALLERY', 'RSVP'].map(item => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className={`mobile-nav-link ${activeSection === item ? 'active' : ''}`}
+                    onClick={() => handleNavClick(item)}
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </nav>
 
@@ -442,23 +477,6 @@ export default function App() {
                 Family
               </button>
             </div>
-
-            {/* <div className="gallery-view-toggle">
-              <button
-                className={`view-btn ${galleryView === 'grid' ? 'active' : ''}`}
-                onClick={() => setGalleryView('grid')}
-                title="Grid View"
-              >
-                ⊞ Grid
-              </button>
-              <button
-                className={`view-btn ${galleryView === 'list' ? 'active' : ''}`}
-                onClick={() => setGalleryView('list')}
-                title="List View"
-              >
-                ≡ List
-              </button>
-            </div> */}
           </div>
 
           <div className={`gallery-grid ${galleryView === 'list' ? 'list-view' : ''}`}>

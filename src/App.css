@@ -67,6 +67,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .logo {
@@ -77,6 +78,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .heart-icon {
@@ -147,6 +149,86 @@ body {
 .nav-link.active {
   color: var(--accent-gold);
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ==================== MOBILE MENU BUTTON ==================== */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.mobile-menu-btn:hover {
+  color: var(--accent-gold);
+}
+
+.mobile-menu-btn.open svg {
+  transform: rotate(90deg);
+  color: var(--accent-gold);
+}
+
+/* ==================== MOBILE NAVIGATION MENU ==================== */
+.mobile-nav-menu {
+  display: none;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: rgba(26, 26, 46, 0.99);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--accent-gold);
+  list-style: none;
+  padding: 1.5rem 1rem;
+  flex-direction: column;
+  gap: 0;
+  z-index: 999;
+  animation: slideDown 0.3s ease-out;
+  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+}
+
+.mobile-nav-menu.open {
+  display: flex;
+}
+
+.mobile-nav-link {
+  color: var(--text-light);
+  text-decoration: none;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  padding: 1rem 1.5rem;
+  display: block;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background: rgba(255, 215, 0, 0.1);
+  color: var(--accent-gold);
+  border-left-color: var(--accent-gold);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ==================== MOBILE MENU OVERLAY ==================== */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  animation: fadeIn 0.3s ease-out;
 }
 
 /* ==================== FLOATING ELEMENTS ==================== */
@@ -251,6 +333,15 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -942,14 +1033,14 @@ body {
   color: var(--text-muted);
 }
 
-/* .gallery-controls {
+.gallery-controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 2rem;
   margin: 2rem 0;
   flex-wrap: wrap;
-} */
+}
 
 .gallery-filters {
   display: flex;
@@ -970,6 +1061,7 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   letter-spacing: 1px;
+  font-size: 0.9rem;
 }
 
 .filter-btn:hover,
@@ -1121,15 +1213,6 @@ body {
   backdrop-filter: blur(5px);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .modal-content {
   position: relative;
   width: 90%;
@@ -1216,21 +1299,6 @@ body {
 
 .modal-next {
   right: -80px;
-}
-
-@media (max-width: 768px) {
-  .modal-prev {
-    left: 10px;
-  }
-
-  .modal-next {
-    right: 10px;
-  }
-
-  .modal-close {
-    top: 10px;
-    right: 10px;
-  }
 }
 
 /* ==================== RSVP SECTION ==================== */
@@ -1639,395 +1707,6 @@ body {
   margin-top: 2rem;
   font-size: 1rem;
 }
-/* ==================== RESPONSIVE DESIGN ==================== */
-@media (max-width: 1024px) {
-  .nav-container {
-    gap: 2rem;
-  }
-
-  .nav-links {
-    gap: 1.5rem;
-  }
-
-  .rsvp-container {
-    grid-template-columns: 1fr;
-  }
-
-  .events-detail {
-    grid-template-columns: 1fr;
-  }
-
-  .save-the-date {
-    min-height: 350px;
-  }
-
-  .gallery-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .gallery-filters {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0.8rem 0;
-  }
-
-  .nav-container {
-    flex-direction: column;
-    gap: 0.8rem;
-    padding: 0.5rem;
-  }
-
-  .nav-links {
-    gap: 0.8rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .nav-link {
-    font-size: 0.8rem;
-    letter-spacing: 0.8px;
-  }
-
-  .section {
-    padding: 100px 1rem 40px;
-  }
-
-  .couple-cards,
-  .event-cards-container,
-  .events-detail,
-  .rsvp-container {
-    grid-template-columns: 1fr;
-  }
-
-  .main-title {
-    font-size: 2.2rem;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-  }
-
-  .countdown {
-    gap: 0.5rem;
-  }
-
-  .countdown-number {
-    font-size: 1.8rem;
-    min-width: 70px;
-  }
-
-  .countdown-separator {
-    font-size: 1.3rem;
-    margin: 0 0.2rem;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .gallery-grid.list-view {
-    grid-template-columns: 1fr;
-  }
-
-  .float-item {
-    font-size: 1.5rem;
-  }
-
-  .save-the-date {
-    min-height: 300px;
-  }
-
-  .date-title {
-    font-size: 0.5rem;
-  }
-
-  .save-date {
-    font-size: 0.5rem;
-  }
-
-  .gallery-view-toggle {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0.6rem 0;
-  }
-
-  .logo {
-    font-size: 1.2rem;
-  }
-
-  .nav-links {
-    gap: 0.5rem;
-    font-size: 0.7rem;
-  }
-
-  .nav-link {
-    font-size: 0.65rem;
-    letter-spacing: 0.5px;
-  }
-
-  .section {
-    padding: 80px 0.8rem 25px;
-  }
-
-  .main-title {
-    font-size: 1.5rem;
-  }
-
-  .date-text {
-    font-size: 0.95rem;
-  }
-
-  .location-text {
-    font-size: 0.8rem;
-  }
-
-  .section-title {
-    font-size: 1.3rem;
-  }
-
-  .section-subtitle {
-    font-size: 0.95rem;
-  }
-
-  .countdown-section {
-    margin-top: 2rem;
-  }
-
-  .countdown-label {
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-  }
-
-  .countdown {
-    gap: 0.3rem;
-  }
-
-  .countdown-number {
-    font-size: 1.3rem;
-    min-width: 55px;
-    padding: 0.3rem;
-  }
-
-  .countdown-separator {
-    font-size: 0.9rem;
-    margin: 0 0.1rem;
-  }
-
-  .countdown-unit {
-    font-size: 0.65rem;
-    margin-top: 0.4rem;
-  }
-
-  .couple-card,
-  .event-card,
-  .event-detail-card {
-    padding: 1.5rem;
-    border-radius: 12px;
-  }
-
-  .card-title {
-    font-size: 1.2rem;
-  }
-
-  .couple-name {
-    font-size: 1.1rem;
-  }
-
-  .couple-parents,
-  .couple-location {
-    font-size: 0.9rem;
-  }
-
-  .event-name {
-    font-size: 1.5rem;
-  }
-
-  .event-buttons {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .btn {
-    width: 100%;
-    padding: 0.7rem 1rem;
-    font-size: 0.85rem;
-  }
-
-  .btn-submit {
-    padding: 0.9rem;
-    font-size: 0.9rem;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .gallery-grid.list-view {
-    grid-template-columns: 1fr;
-  }
-
-  .zoom-btn {
-    width: 50px;
-    height: 50px;
-  }
-
-  .form-group {
-    margin-bottom: 1rem;
-  }
-
-  .form-group label {
-    font-size: 0.85rem;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 0.7rem;
-    font-size: 0.95rem;
-  }
-
-  .checkbox-group {
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-
-  .checkbox-label {
-    font-size: 0.9rem;
-  }
-
-  .footer-couple-image {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 1.5rem;
-  }
-
-  .footer-couple-name {
-    font-size: 1.4rem;
-  }
-
-  .footer-date {
-    font-size: 0.95rem;
-  }
-
-  .footer-venue {
-    font-size: 0.85rem;
-  }
-
-  .float-item {
-    font-size: 1.2rem;
-  }
-
-  .bible-verse-footer {
-    font-size: 0.95rem;
-  }
-
-  .bible-verse-footer.quote {
-    font-size: 0.85rem;
-  }
-
-  .save-the-date {
-    min-height: 250px;
-  }
-
-  .date-title {
-    font-size: 1.2rem;
-  }
-
-  .save-date {
-    font-size: 1.2rem;
-  }
-
-  .save-venue {
-    font-size: 0.85rem;
-  }
-
-  .modal-prev {
-    left: 5px;
-  }
-
-  .modal-next {
-    right: 5px;
-  }
-
-  .modal-image {
-    width: 95%;
-    height: auto;
-  }
-
-  .gallery-controls {
-    gap: 1rem;
-  }
-
-  .gallery-filters {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 360px) {
-  .main-title {
-    font-size: 1.3rem;
-  }
-
-  .countdown-number {
-    font-size: 1.1rem;
-    min-width: 45px;
-  }
-
-  .section-title {
-    font-size: 1.1rem;
-  }
-
-  .event-icon {
-    font-size: 2.5rem;
-  }
-
-  .btn {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.8rem;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-  }
-
-  .footer-couple-image {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 1rem;
-  }
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--primary-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--accent-gold), var(--accent-pink));
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, var(--accent-light-gold), #FF1493);
-}
 
 /* ==================== FLOATING MUSIC BUTTON ==================== */
 .floating-music-btn {
@@ -2148,8 +1827,147 @@ body {
   }
 }
 
-/* Responsive floating button */
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/* Tablets (1024px and below) */
+@media (max-width: 1024px) {
+  .nav-container {
+    gap: 2rem;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .rsvp-container {
+    grid-template-columns: 1fr;
+  }
+
+  .events-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .save-the-date {
+    min-height: 350px;
+  }
+
+  .gallery-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gallery-filters {
+    justify-content: center;
+  }
+}
+
+/* Tablets (768px and below) */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.8rem 0;
+  }
+
+  .nav-container {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-nav-menu {
+    display: flex !important;
+  }
+
+  .section {
+    padding: 100px 1rem 40px;
+  }
+
+  .couple-cards,
+  .event-cards-container,
+  .events-detail,
+  .rsvp-container {
+    grid-template-columns: 1fr;
+  }
+
+  .main-title {
+    font-size: 2.2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .countdown {
+    gap: 0.5rem;
+  }
+
+  .countdown-number {
+    font-size: 1.8rem;
+    min-width: 70px;
+  }
+
+  .countdown-separator {
+    font-size: 1.3rem;
+    margin: 0 0.2rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .gallery-grid.list-view {
+    grid-template-columns: 1fr;
+  }
+
+  .float-item {
+    font-size: 1.5rem;
+  }
+
+  .save-the-date {
+    min-height: 300px;
+  }
+
+  .date-title {
+    font-size: 0.5rem;
+  }
+
+  .save-date {
+    font-size: 0.5rem;
+  }
+
+  .gallery-view-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .modal-prev {
+    left: 10px;
+  }
+
+  .modal-next {
+    right: 10px;
+  }
+
+  .modal-close {
+    top: 10px;
+    right: 10px;
+  }
+
   .floating-music-btn {
     width: 60px;
     height: 60px;
@@ -2173,11 +1991,293 @@ body {
   }
 }
 
+/* Small Phones (480px and below) */
 @media (max-width: 480px) {
+  .navbar {
+    padding: 0.6rem 0;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-container {
+    padding: 0 0.8rem;
+  }
+
+  .nav-link {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+  }
+
+  .mobile-nav-link {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .section {
+    padding: 80px 0.8rem 25px;
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+  }
+
+  .date-text {
+    font-size: 0.95rem;
+  }
+
+  .location-text {
+    font-size: 0.8rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .countdown-section {
+    margin-top: 2rem;
+  }
+
+  .countdown-label {
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+  }
+
+  .countdown {
+    gap: 0.3rem;
+  }
+
+  .countdown-number {
+    font-size: 1.3rem;
+    min-width: 55px;
+    padding: 0.3rem;
+  }
+
+  .countdown-separator {
+    font-size: 0.9rem;
+    margin: 0 0.1rem;
+  }
+
+  .countdown-unit {
+    font-size: 0.65rem;
+    margin-top: 0.4rem;
+  }
+
+  .couple-card,
+  .event-card,
+  .event-detail-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .couple-name {
+    font-size: 1.1rem;
+  }
+
+  .couple-parents,
+  .couple-location {
+    font-size: 0.9rem;
+  }
+
+  .event-name {
+    font-size: 1.5rem;
+  }
+
+  .event-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-submit {
+    padding: 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .gallery-grid.list-view {
+    grid-template-columns: 1fr;
+  }
+
+  .zoom-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    gap: 5px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.7rem;
+    font-size: 0.95rem;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .checkbox-label {
+    font-size: 0.9rem;
+  }
+
+  .footer-couple-image {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-couple-name {
+    font-size: 1.4rem;
+  }
+
+  .footer-date {
+    font-size: 0.95rem;
+  }
+
+  .footer-venue {
+    font-size: 0.85rem;
+  }
+
+  .float-item {
+    font-size: 1.2rem;
+  }
+
+  .bible-verse-footer {
+    font-size: 0.95rem;
+  }
+
+  .bible-verse-footer.quote {
+    font-size: 0.85rem;
+  }
+
+  .save-the-date {
+    min-height: 250px;
+  }
+
+  .date-title {
+    font-size: 1.2rem;
+  }
+
+  .save-date {
+    font-size: 1.2rem;
+  }
+
+  .save-venue {
+    font-size: 0.85rem;
+  }
+
+  .modal-prev {
+    left: 5px;
+  }
+
+  .modal-next {
+    right: 5px;
+  }
+
+  .modal-image {
+    width: 95%;
+    height: auto;
+  }
+
+  .gallery-controls {
+    gap: 1rem;
+  }
+
+  .gallery-filters {
+    justify-content: center;
+  }
+
   .floating-music-btn {
     width: 55px;
     height: 55px;
     bottom: 20px;
     right: 20px;
   }
+}
+
+/* Extra Small Phones (360px and below) */
+@media (max-width: 360px) {
+  .main-title {
+    font-size: 1.3rem;
+  }
+
+  .countdown-number {
+    font-size: 1.1rem;
+    min-width: 45px;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .event-icon {
+    font-size: 2.5rem;
+  }
+
+  .btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .footer-couple-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .mobile-nav-link {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-pink));
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--accent-light-gold), #FF1493);
 }
