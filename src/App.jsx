@@ -10,8 +10,8 @@ import couple3 from './assets/couple3.jpeg';
 import couple4 from './assets/couple4.jpeg';
 import family from './assets/family.jpeg';
 import family1 from './assets/family1.jpeg';
-import preWedding from './assets/preWedding.jpeg';
-import preWedding1 from './assets/preWedding1.jpeg';
+import wedding from './assets/wedding.jpeg';
+import img from './assets/img.jpeg';
 import temple from './assets/temple.jpg';
 import resciption from './assets/resciption.jpg';
 
