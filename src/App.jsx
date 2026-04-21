@@ -550,17 +550,17 @@ import './App.css';
 import { Heart, Music, Volume2, VolumeX, MapPin, Calendar, Search, Send,Users,CalendarDays ,Utensils,MessageSquareHeart, X } from 'lucide-react';
 
 // ==================== IMAGE IMPORTS ====================
-import couple from '../public/images/couple.jpeg';
-import couple1 from '../public/images/couple1.jpeg';
-import couple2 from '../public/images/couple2.jpeg';
-import couple3 from '../public/images/couple3.jpeg';
-import couple4 from '../public/images/couple4.jpeg';
-import family from '../public/images/family.jpeg';
-import family1 from '../public/images/family1.jpeg';
-import preWedding from '../public/images/preWedding.jpeg';
-import preWedding1 from '../public/images/preWedding1.jpeg';
-import temple from '../public/images/temple.jpg';
-import resciption from '../public/images/resciption.jpg';
+import couple from '../src/assets/couple.jpeg';
+import couple1 from '../src/assets/couple1.jpeg';
+import couple2 from '../src/assets/couple2.jpeg';
+import couple3 from '../src/assets/couple3.jpeg';
+import couple4 from '../src/assets/couple4.jpeg';
+import family from '../src/assets/family.jpeg';
+import family1 from '../src/assets/family1.jpeg';
+import preWedding from '../src/assets/preWedding.jpeg';
+import preWedding1 from '../src/assets/preWedding1.jpeg';
+import temple from '../src/assets/temple.jpg';
+import resciption from '../src/assets/resciption.jpg';
 
 // ==================== AUDIO IMPORT ====================
 import weddingMusic from '../public/music/Dheema.mp3';
